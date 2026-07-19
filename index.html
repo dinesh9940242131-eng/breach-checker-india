@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-key="title">🛡️ BreachCheck India — Data Breach Checker</title>
+    
+    <!-- Fonts for all scripts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Tamil:wght@400;700&family=Noto+Sans+Devanagari:wght@400;700&family=Noto+Sans+Malayalam:wght@400;700&family=Noto+Sans+Telugu:wght@400;700&family=Noto+Sans+Kannada:wght@400;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <span class="shield">🛡️</span>
+                <h1>BreachCheck <span class="in">India</span></h1>
+            </div>
+            <div class="lang-selector">
+                <select id="languageSelect" onchange="switchLanguage(this.value)">
+                    <option value="ta">தமிழ்</option>
+                    <option value="en">English</option>
+                    <option value="hi">हिन्दी</option>
+                    <option value="ml">മലയാളം</option>
+                    <option value="te">తెలుగు</option>
+                    <option value="kn">ಕನ್ನಡ</option>
+                </select>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2 data-key="heroTitle">Has Your Data Been Leaked?</h2>
+            <p data-key="heroSubtitle">
+                Check for free if your personal information was exposed in known Indian data breaches.
+            </p>
+        </div>
+    </section>
+
+    <!-- Search Section -->
+    <section class="search-section">
+        <div class="container">
+            <div class="search-card">
+                <div class="input-type-selector">
+                    <button id="btn-email" class="type-btn active" onclick="setInputType('email')">
+                        📧 <span data-key="emailTab">Email</span>
+                    </button>
+                    <button id="btn-phone" class="type-btn" onclick="setInputType('phone')">
+                        📱 <span data-key="phoneTab">Phone Number</span>
+                    </button>
+                </div>
+
+                <div class="input-group">
+                    <input type="text" 
+                           id="searchInput" 
+                           data-key-placeholder="emailPlaceholder"
+                           placeholder="e.g. example@email.com" 
+                           autocomplete="off">
+                    <button id="checkBtn" onclick="checkBreach()">
+                        <span data-key="checkBtn">Check Now</span>
+                    </button>
+                </div>
+
+                <div class="privacy-note">
+                    <span class="lock">🔒</span>
+                    <span data-key="privacyNote">
+                        Your data is encrypted in your browser. Nothing is stored or sent anywhere.
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Loading (Hidden) -->
+    <section id="loadingSection" class="result-section hidden">
+        <div class="container">
+            <div class="loading-box">
+                <div class="spinner"></div>
+                <p data-key="checking">Checking breach databases...</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Section (Hidden initially) -->
+    <section id="resultSection" class="result-section hidden">
+        <div class="container">
+            <div id="resultBox" class="result-box">
+                <!-- Results appear here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Breach Database Info -->
+    <section class="database-info">
+        <div class="container">
+            <h3 data-key="dbTitle">Breaches We Check Against</h3>
+            <div class="breach-grid">
+                <div class="breach-card">
+                    <div class="breach-icon">🍕</div>
+                    <h4>Domino's India</h4>
+                    <p>2021 • 18 Crore Records</p>
+                    <span class="data-type">Email, Phone, Address</span>
+                </div>
+                <div class="breach-card">
+                    <div class="breach-icon">📞</div>
+                    <h4>JustDial</h4>
+                    <p>2019 • 10 Crore Records</p>
+                    <span class="data-type">Phone, Email, Name</span>
+                </div>
+                <div class="breach-card">
+                    <div class="breach-icon">🛒</div>
+                    <h4>BigBasket</h4>
+                    <p>2020 • 2 Crore Records</p>
+                    <span class="data-type">Email, Phone, Address</span>
+                </div>
+                <div class="breach-card">
+                    <div class="breach-icon">💳</div>
+                    <h4>MobiKwik</h4>
+                    <p>2021 • 11 Crore Records</p>
+                    <span class="data-type">Phone, Email, KYC</span>
+                </div>
+                <div class="breach-card">
+                    <div class="breach-icon">✈️</div>
+                    <h4>Air India</h4>
+                    <p>2021 • 45 Lakh Records</p>
+                    <span class="data-type">Name, Passport, Email</span>
+                </div>
+                <div class="breach-card">
+                    <div class="breach-icon">👤</div>
+                    <h4>Facebook India</h4>
+                    <p>2021 • 61 Lakh Records</p>
+                    <span class="data-type">Phone, Email, Name</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What To Do Section -->
+    <section class="what-to-do">
+        <div class="container">
+            <h3 data-key="whatToDoTitle">What To Do If Your Data Was Leaked?</h3>
+            <div class="steps" id="stepsContainer">
+                <!-- Filled by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p data-key="footerSecure">🔒 No Data Stored | Secured with SHA-256</p>
+            <p class="disclaimer" data-key="footerDisclaimer">
+                This is an educational project. No real breach data is stored.
+            </p>
+            <p class="report-link">
+                🚨 <span data-key="reportText">Report cybercrime:</span> 
+                <a href="https://www.cybercrime.gov.in" target="_blank">cybercrime.gov.in</a> | 
+                <span data-key="helpline">Helpline:</span> <strong>1930</strong>
+            </p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="data/breaches.js"></script>
+    <script src="lang/en.js"></script>
+    <script src="lang/ta.js"></script>
+    <script src="lang/hi.js"></script>
+    <script src="lang/ml.js"></script>
+    <script src="lang/te.js"></script>
+    <script src="lang/kn.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
